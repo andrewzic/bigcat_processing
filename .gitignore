@@ -1,0 +1,5 @@
+data/*
+rawdata/*
+scripts/*.log
+scripts/*.last
+scripts/*.*~
