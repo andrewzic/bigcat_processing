@@ -17,7 +17,7 @@ def parse_args():
     p.add_argument("--calmode", type=str, default="p", help="calibration mode: either 'p' or 'ap'")
     p.add_argument("--field", default="", help="Field selection (CASA syntax).")
     p.add_argument("--spw", default="", help="SPW/chans selection (CASA syntax).")
-    p.add_argument("--refant", default="ANT03", help="Reference antenna name(s).") #to do  : work out which antenna is the best
+    p.add_argument("--refant", default="ANT3", help="Reference antenna name(s).") #to do  : work out which antenna is the best
     p.add_argument("--combine", default="", help="Axes to combine in solve, e.g. 'scan,spw'.")
     p.add_argument("--minsnr", type=float, default=3.0, help="Minimum SNR for valid solutions.")
     p.add_argument("--parang", action="store_true", help="Apply parallactic angle in gaincal/applycal.")
