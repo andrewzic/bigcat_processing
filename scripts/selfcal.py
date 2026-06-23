@@ -2,9 +2,11 @@
 import argparse
 import os
 from datetime import datetime
-import casaconfig
-casaconfig.logfile = "/dev/null"
+# import casaconfig
+# casaconfig.logfile = "/dev/null"
 
+import sys
+sys.path.append(os.path.abspath("."))
 from ms_tools import has_model_column, solve_gain_phase, apply_gain
 
 def parse_args():
