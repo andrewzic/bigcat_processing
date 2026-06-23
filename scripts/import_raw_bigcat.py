@@ -252,7 +252,7 @@ def main(ms):
         obsdir = os.path.basename(os.path.dirname(out_ms[0]))
         concatvis_base = "/{}".format("/".join(os.path.dirname(out_ms[0]).split("/")[:-1]))
         out_uvfits = "/{}/{}".format(concatvis_base, make_uvfits_name(out_ms))
-        concat_ms = "/{}/{}".format(concatvis_base, out_uvfits.replace(".uvfits", ".ms"))
+        concat_ms = "/{}".format(out_uvfits.replace(".uvfits", ".ms"))
         concatvis = "/{}/{}_combined_{}.mir.ms".format(
             concatvis_base,
             obsdir.split("_")[0],

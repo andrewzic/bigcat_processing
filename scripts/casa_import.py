@@ -28,24 +28,24 @@ def import_uvfits(fitsfiles, clobber=True):
     except Exception:
         from tasks import importuvfits      # CASA 5
 
-   msnames = []
-   for fitsfile in fitsfiles:      
-      msname = fitsfile.replace(".uvfits", ".ms")
-      if os.path.exists(msname) and clobber:
-         os.system('rm -rf {}'.format(msname))
-      importuvfits(fitsfile=fitsfile, vis=msname)
-      msnames.append(msname)
+    msnames = []
+    for fitsfile in fitsfiles:      
+        msname = fitsfile.replace(".uvfits", ".ms")
+        if os.path.exists(msname) and clobber:
+            os.system('rm -rf {}'.format(msname))
+        importuvfits(fitsfile=fitsfile, vis=msname)
+        msnames.append(msname)
       
-   return msnames
+    return msnames
 
 
 
 def main():
-   args = parse_args()
+    args = parse_args()
 
-   msnames = import_uvfits(args.fitsfiles, args.clobber)
+    msnames = import_uvfits(args.fitsfiles, args.clobber)
 
 if __name__ == "__main__":
-   main()
+    main()
    
    
