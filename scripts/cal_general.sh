@@ -10,7 +10,11 @@ restart_proc
 casa 6 --nologger --nogui -c import_raw_bigcat.py ${PROJ_ROOT}/rawdata/*_${pcode}/raw.ms
 
 #user supplied arg
-rawuvfits=$1
+#no actually we can just load in the *pcode.uvfits from the data directory
+shopt -s nullglob
+files=("${PROJ_DATA}"/*_"${pcode}".uvfits)
+rawuvfits="${files[0]}"
+#rawuvfits=$1
 load_data $rawuvfits
 
 blflag_data $pcal chan amp
@@ -21,6 +25,10 @@ blflag_data $pcal chan amp
 blflag_data $pcal time phase
 
 flag_mfcal_sequence
+blflag_data $pcal chan amp
+flag_mfcal_sequence
+
+blflag_data $pcal chan amp
 
 flag_gpcal_primary_sequence
 blflag_data $pcal chan amp
