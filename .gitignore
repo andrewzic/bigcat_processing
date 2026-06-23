@@ -1,3 +1,10 @@
 scripts/*.log
 scripts/*.last
 scripts/*.*~
+
+
+!data/
+!data/.gitignore
+
+!rawdata/
+!rawdata/.gitignore
