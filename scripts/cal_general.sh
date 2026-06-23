@@ -115,7 +115,7 @@ do
         #subsequent rounds should be derived from the previous selfcal round
         ms_to_selfcal=${PROJ_DATA}/${target}.${freq}${ifext}.selfcal_$((r-1)).ms
     fi
-    casa 6 --nologger --nogui -c selfcal.py --ms ${ms_to_selfcal} --index ${r} --calmode ${SC_CALMODE[r-1]} --field "${SC_FIELD}" --spw "${SC_SPW}" --refant "${SC_REFANT}" --combine "${SC_COMBINE}" --minsnr ${SC_MINSNR} --parang ${SC_PARANG} --apply_calwt ${SC_APPLY_CALWT}
+    casa 6 --nologger --nogui -c selfcal.py --ms ${ms_to_selfcal} --index ${r} --calmode ${SC_CALMODE[r-1]} --solint ${SC_SOLINT[r-1]} --field "${SC_FIELD}" --spw "${SC_SPW}" --refant "${SC_REFANT}" --combine "${SC_COMBINE}" --minsnr ${SC_MINSNR} --parang ${SC_PARANG} --apply_calwt ${SC_APPLY_CALWT}
     #new_ms = args.ms.replace(".cal.ms", f".selfcal_{args.index}.ms")
     new_ms=${PROJ_DATA}/${target}.${freq}${ifext}.selfcal_${r}.ms
     wsclean ${WSCLEAN_OPTS[r-1]} -name ${PROJ_DATA}/${target}_${SC_PREFIX[r-1]} -minuv-l 1600 ${new_ms} ; rm ${PROJ_DATA}/*000?-*.fits
