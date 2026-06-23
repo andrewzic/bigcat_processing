@@ -4,7 +4,7 @@
 source ./config.sh
 source ./cal_tools.sh
 
-restart_proc
+#restart_proc
 
 if [ ! -d ${PROJ_DATA}/$pcal.${freq}${ifext} ]
 then
