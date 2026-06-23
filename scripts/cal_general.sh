@@ -10,6 +10,7 @@ restart_proc
 rawuvfits=$1
 load_data $rawuvfits
 
+blflag_data $pcal chan amp
 flag_mfcal_sequence
 
 #for manual flagging
@@ -19,9 +20,14 @@ blflag_data $pcal time phase
 flag_mfcal_sequence
 
 flag_gpcal_primary_sequence
+blflag_data $pcal chan amp
+blflag_data $pcal chan phase
+flag_gpcal_primary_sequence
 
 gpcopy vis=${PROJ_DATA}/$pcal.${freq}${ifext} out=${PROJ_DATA}/$scal.${freq}${ifext}
 
+blflag_data $scal chan amp
+blflag_data $scal chan amp
 flag_gpcal_secondary # This is gain cal
 blflag_data $scal chan amp
 blflag_data $scal time amp
@@ -38,6 +44,8 @@ gpcopy vis=${PROJ_DATA}/$scal.${freq}${ifext} out=${PROJ_DATA}/$target.${freq}${
 gpaver vis=${PROJ_DATA}/$target.${freq}${ifext} interval=2
 
 auto_flag $target
+blflag_data $target chan amp
+blflag_data $target chan amp
 
 #now apply calibrations to target using uvaver
 uvaver vis=${PROJ_DATA}/$target.${freq}${ifext} out=${PROJ_DATA}/$target.${freq}${ifext}.cal
@@ -52,6 +60,6 @@ fi
 #export to uvfits
 fits in=${PROJ_DATA}/$target.${freq}${ifext}.cal out=${PROJ_DATA}/$target.${freq}${ifext}.cal.uvfits op=uvout
 
+casa 6 --nologger --nogui -c casa_import.py ${PROJ_DATA}/${target}.${freq}${ifext}.cal.uvfits
 
-
-#wsclean -name ${PROJ_DATA}/${target}.img -data-column DATA -save-source-list -multiscale -multiscale-scale-bias 0.8 -niter 25000 -pol i -weight briggs 1.5 -scale 1asec -size 2048 2048 -auto-threshold 3 -auto-mask 7.0 -join-channels -channels-out 8 -fit-spectral-pol 3 -minuv-l 1000 ${PROJ_DATA}/${target}.${freq}${ifext}.cal.ms
+wsclean -name ${target}.img -data-column DATA -save-source-list -multiscale -multiscale-scale-bias 0.8 -niter 25000 -pol i -weight briggs 1.5 -scale 1asec -size 2048 2048 -auto-threshold 3 -auto-mask 7.0 -join-channels -channels-out 8 -fit-spectral-pol 3 -minuv-l 1600 ${target}.${freq}${ifext}.cal.ms ; rm *000?-*.fits
