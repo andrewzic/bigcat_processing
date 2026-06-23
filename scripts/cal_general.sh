@@ -6,6 +6,9 @@ source ./cal_tools.sh
 
 restart_proc
 
+#expecting stuff like rawdata/2026-01-02_0145_C9999/raw.ms
+casa 6 --nologger --nogui -c import_raw_bigcat.py ${PROJ_ROOT}/rawdata/*_${pcode}/raw.ms
+
 #user supplied arg
 rawuvfits=$1
 load_data $rawuvfits
