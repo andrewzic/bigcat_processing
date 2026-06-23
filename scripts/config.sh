@@ -2,30 +2,35 @@
 
 ###set some useful variable names###
 #project root directory
-export PROJ_ROOT=/DATA/CETUS_3/zic006/C3707/2026-03-01
+export PROJ_ROOT=/path/to/your/files
 export PROJ_SCRIPTS=${PROJ_ROOT}/scripts/
 export PROJ_DATA=${PROJ_ROOT}/data/
 export PROJ_PROC=${PROJ_ROOT}/proc/
 export PROJ_IMG=${PROJ_ROOT}/img/
+if [ ! -d ${PROJ_DATA} ]
+then
+    mkdir -p ${PROJ_DATA}
+fi
+
 #parameter to indicate you want to start from scratch
 export start_fresh=1
 
 #project code
-export pcode=C3707
+export pcode=C3999
 
 #primary calibrator source name - should be 1934-638 in most cases
 export pcal=1934-638
 
 #secondary calibrator source name
 #change this to whatever your phase cal is
-export scal=1748-253
+export scal=SECONDARY_CAL
 
 #target name
 #change this
-export target=j1755-2527
+export target=TARGET
 
 #frequency: usually 2100 (16cm receiver, L/S-band), 5500 or 9000 (4cm receiver, C/X band), etc
-export freq=2112
+export freq=FREQ
 
 #phase reference antenna. Usually 3 works okay
 export refant=3
