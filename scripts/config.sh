@@ -59,6 +59,8 @@ export nmfcal_auto=5
 
 export ngpcal_auto=5
 
+export MINUV_L="${MINUV_L:-1600}" #minimum uv distance in wavelengths for imaging and self-calibration; set to 0 to include all baselines, or increase to exclude shorter baselines if needed
+
 SC_FIELD="${SC_FIELD:-}"
 SC_SPW="${SC_SPW:-}"
 SC_REFANT="${SC_REFANT:-ANT3}"
@@ -73,6 +75,17 @@ declare -ag SC_INDEX=(1 2 3 4 5)
 declare -ag SC_CALMODE=("p" "p" "p" "p" "ap" )
 declare -ag SC_SOLINT=("480s" "300s" "120s" "30s" "600s" )
 declare -ag SC_PREFIX=("selfcal1_p" "selfcal2_p" "selfcal3_p" "selfcal4_p" "selfcal5_ap" )
+
+# flint_mask runtime options (all optional; tune as needed)
+# flint_masking mask --flood-fill --flood-fill-positive-seed-clip 1.1 --flood-fill-positive-flood-clip 0.7 --flood-fill-use-mac --flood-fill-use-mac-box-size 350 --beam-shape-erode --beam-shape-erode-minimum-response 0.75
+FLOOD_FILL_POSITIVE_SEED_CLIP=${FLOOD_FILL_POSITIVE_SEED_CLIP:-1.1}
+FLOOD_FILL_POSITIVE_FLOOD_CLIP=${FLOOD_FILL_POSITIVE_FLOOD_CLIP:-0.7}
+FLOOD_FILL_MAC_BOX_SIZE=${FLOOD_FILL_MAC_BOX_SIZE:-350}
+BEAM_SHAPE_ERODE_MIN_RESPONSE=${BEAM_SHAPE_ERODE_MIN_RESPONSE:-0.75}
+# flint masking options
+
+FLINT_MASK_OPTIONS="--flood-fill --flood-fill-positive-seed-clip ${FLOOD_FILL_POSITIVE_SEED_CLIP} --flood-fill-positive-flood-clip ${FLOOD_FILL_POSITIVE_FLOOD_CLIP} --flood-fill-use-mac --flood-fill-use-mac-box-size ${FLOOD_FILL_MAC_BOX_SIZE} --beam-shape-erode --beam-shape-erode-minimum-response ${BEAM_SHAPE_ERODE_MIN_RESPONSE}"
+
 
 # WSClean options (per round)
 declare -ag WSCLEAN_OPTS
