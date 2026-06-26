@@ -269,7 +269,8 @@ def solve_gain_phase(ms, caltable, solint, args):
         minsnr=args.minsnr,
         gaintype="G",
         calmode=args.calmode,
-        parang=args.parang
+        parang=args.parang,
+        uvrange=args.uvrange,
     )
 
 
